@@ -35,6 +35,15 @@ nav li{
 nav img{
     width: 40px;
 }
+
+nav #settings{ /*PLEASE HELP LIAM IDK HOW TO MAKE IT GO TO THE RIGHT */
+    float: right;
+}
+
+nav #settings:hover{ /*PLEASE HELP LIAM IDK HOW TO MAKE THE ANIMATION CONTINUE AFTER STOP HOVERING SO IF YOU BRIEFLY HOVER OVER IT IT LOOKS WEIRD */
+    animation: spin 1s
+}
+
 .start-button-container{
     text-align: center;
 }
@@ -108,3 +117,13 @@ nav img{
     border-color: black;
     border-radius: 15px;
 }
+#restart{       /*LIAM PLEASE FIX THIS ABOMINATION I DONT KNOW WHAT I WAS DOING PLS FIX */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(4.0);
+}
+
+@keyframes spin {
+    100% {transform: rotate(360deg);}
+  }
