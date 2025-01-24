@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/next';
+
 var start_button = document.getElementById('start');
 var main_div = document.getElementById('main-game');
 var round = document.getElementById('round');
