@@ -1,7 +1,3 @@
-import { inject } from '@vercel/analytics';
- 
-inject();
-
 var start_button = document.getElementById('start');
 var main_div = document.getElementById('main-game');
 var round = document.getElementById('round');
