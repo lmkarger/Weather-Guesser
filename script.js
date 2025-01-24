@@ -1,4 +1,18 @@
 import { Analytics } from '@vercel/analytics/next';
+ 
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <title>Next.js</title>
+      </head>
+      <body>
+        {children}
+        <Analytics />
+      </body>
+    </html>
+  );
+}
 
 var start_button = document.getElementById('start');
 var main_div = document.getElementById('main-game');
