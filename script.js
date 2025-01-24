@@ -74,7 +74,7 @@ function make_map(latitude, longitude){ //instantiates the map, places a marker 
   map = L.map('map').setView([latitude, longitude], 13);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
   marker = L.marker([latitude, longitude]).addTo(map); //adds a marker to the map
 }
@@ -698,7 +698,7 @@ const cities = [ //some of the cities with multiple words in them are buggy with
 ];
 
 async function get_data(city_name) { //gets current weather data from the API
-  const url = `http://api.weatherapi.com/v1/current.json?key=02e95b9779c24136aec181034241909&q=${city_name}&aqi=no`;
+  const url = `https://api.weatherapi.com/v1/current.json?key=02e95b9779c24136aec181034241909&q=${city_name}&aqi=no`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
