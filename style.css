@@ -260,18 +260,36 @@ nav #settings img.rotate{
   cursor: pointer; /* Cursor on hover */
 }
 
-#endscreen {
-    height: 100vh;
-    width: 100vw;
+#endscreen{
+
     display: none;
-    color: purple;
-    background-color: purple;
-    z-index: 1000000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    width: min(700px, 70%);
+    height: min(400px, 40%);
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.051);
+
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    
+
+    border-radius: 25px;
+    border: solid rgba(0, 0, 0, 0.818) 4px;
+    z-index: 100000;
+    justify-content: center;
 }
 
 
+
 @media (max-width: 800px) {
-    .gametitle {
+    #gametitle {
         display: none;
     }
     .game-container{
@@ -290,4 +308,7 @@ nav #settings img.rotate{
     .timer {
         font-size: 16px;
     }
+    .slider {
+        width: 30%; /* Full-width */
+      }
   }

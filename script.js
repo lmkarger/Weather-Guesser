@@ -29,9 +29,11 @@ function toggleSettings(){
 function toggleEndScreen(){
   console.log("endscreen toggle")
   const endscreen = document.getElementById('endscreen')
+  const gameContainer = document.getElementById('main-game')
   if (endscreen_status == 0){
     console.log("endscreen on")
     endscreen.style.display = 'flex'
+    gameContainer.style.display = 'none'
     endscreen_status = 1
   }
   else{
@@ -768,6 +770,7 @@ function check_guess(city_temperature){ //checks the guess to see if it's close 
   if (Math.abs(parseFloat(guess) - city_temperature) < threshold){ //all the following lines just check if the guess was in the threshold and then evaluates the points you should get
     //console.log("correct guess!");
     let points_awarded = Math.floor(5000/(1 + Math.abs(parseFloat(guess) - city_temperature)))
+    //document.getElementById("end-score").innerHTML = `You got ${points} points!`
     points += points_awarded
     document.getElementById("points-tracker").innerHTML = `You have ${points} points!`
     document.getElementById("guess-prompt").innerHTML = `You win! The exact temperature was ${city_temperature}\u00B0 F`
@@ -775,6 +778,9 @@ function check_guess(city_temperature){ //checks the guess to see if it's close 
   if (Math.abs(parseFloat(guess) - city_temperature) >= threshold){
     //console.log("correct guess!");
     document.getElementById("guess-prompt").innerHTML = `The correct answer was ${city_temperature}\u00B0 F`
+  }
+  if (points < 1000){
+    document.getElementById("end-score").innerHTML = `You got ${points} points! That's horrible! Maybe try a different game...`
   }
   wait_screen(); //turns on the waitscreen after the guess was made
 }

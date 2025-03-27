@@ -22,8 +22,8 @@
 </head>
 <body>
     <div id="endscreen"> <!-- Endscreen -->
-        <div></div>
-        <div></div>
+        <div id="end-score">You got 0 points!</div>
+        <div id="play-again"></div>
     </div>
     <nav>   <!-- Creates the Navbar -->
         <ul>
@@ -61,7 +61,7 @@
     </div>
     <!-- Creates the Start button -->
     <div class="start-button-container" id="start">
-        <button class="start-button" onclick="start_game(30, 3, 2);">Start</button>
+        <button class="start-button" onclick="start_game(30, 3, 5);">Start</button>
     </div>
     <!-- Creates the Waitscreen -->
     <div class="wait-screen"></div>
@@ -84,10 +84,6 @@
     <!-- Creates the Restart Game Button -->
     <div class="restart-container">
         <button id="restart" onClick="window.location.reload();">Restart Game</button>
-    </div>
-
-    <div id="game-end"> <!-- Need to format this and hide it when game is ongoing -->
-
     </div>
 
 
