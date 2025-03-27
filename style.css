@@ -289,15 +289,16 @@ nav #settings img.rotate{
 
 
 @media (max-width: 800px) {
-    #gametitle {
+    .gametitle {
         display: none;
     }
     .game-container{
         width: min(70vw, 100%);
+        margin-top: 30px;
     }
     #map {
         width: 55vw;
-        height: 80vw;
+        height: 70vw;
     }
     .game-container input{
         width: 60vw;

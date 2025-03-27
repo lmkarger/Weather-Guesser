@@ -34,6 +34,7 @@ function toggleEndScreen(){
     console.log("endscreen on")
     endscreen.style.display = 'flex'
     gameContainer.style.display = 'none'
+    round.style.display = 'none'
     endscreen_status = 1
   }
   else{
@@ -99,9 +100,6 @@ function make_map(latitude, longitude){ //instantiates the map, places a marker 
 }
 
 async function change_round(){
-  if ((round_counter >= round_limit) && (endscreen_status == 0)){
-    toggleEndScreen()
-  }
   var city_number = Math.floor(Math.random() * cities.length); //chooses a random number
   var city_name = cities[city_number]["city"]; //sets the city_name to a random city
   city_country = cities[city_number]["country"]; //finds the country correlated the the chosen city
@@ -113,6 +111,9 @@ async function change_round(){
   timer(guess_time) //starts a new timer for this round of the game
   round_counter += 1; //increments the round counter
   round.innerHTML = `Round: ${round_counter}`
+  if ((round_counter > round_limit) && (endscreen_status == 0)){
+    toggleEndScreen()
+  }
 }
 
 const cities = [ //some of the cities with multiple words in them are buggy with the API
@@ -770,8 +771,8 @@ function check_guess(city_temperature){ //checks the guess to see if it's close 
   if (Math.abs(parseFloat(guess) - city_temperature) < threshold){ //all the following lines just check if the guess was in the threshold and then evaluates the points you should get
     //console.log("correct guess!");
     let points_awarded = Math.floor(5000/(1 + Math.abs(parseFloat(guess) - city_temperature)))
-    //document.getElementById("end-score").innerHTML = `You got ${points} points!`
     points += points_awarded
+    document.getElementById("end-score").innerHTML = `You got ${points} points!`
     document.getElementById("points-tracker").innerHTML = `You have ${points} points!`
     document.getElementById("guess-prompt").innerHTML = `You win! The exact temperature was ${city_temperature}\u00B0 F`
   }
