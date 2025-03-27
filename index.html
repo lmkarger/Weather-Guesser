@@ -15,16 +15,20 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
-    <script type="module">
+    <script type="module"> //analytics for vercel, don't delete
         import { inject } from 'https://cdn.jsdelivr.net/npm/@vercel/analytics@latest/dist/index.mjs';
         inject({ projectId: 'your-project-id' });
     </script>
 </head>
 <body>
+    <div id="endscreen"> <!-- Endscreen -->
+        <div></div>
+        <div></div>
+    </div>
     <nav>   <!-- Creates the Navbar -->
         <ul>
             <li><img src="images/web-icon.png" alt=""></li>
-            <li>Weather Guesser</li>
+            <li class="gametitle">Weather Guesser</li>
             <li id="round"></li>
             <li id="settings"><button id="settings-button" onclick="toggleSettings()"><img src="images/settings-icon.png" alt=""></button></li>
         </ul>
@@ -33,11 +37,13 @@
     <div class="settings-screen" id="settings-screen">
         <h1>Settings</h1>
         <div id="settings-exit" onclick="toggleSettings()">
-            x
         </div>
         <ul> <!-- Settings still need to be implemented -->
             <li>Master Volume
-                <div id="master-volume"></div>
+                <div id="master-volume">
+                    <audio src=""></audio>
+                    <input type="range" min="0" max="100" value="10" class="slider" id="volume-slider">
+                </div>
             </li>
             <li>Music Volume
                 <div id="music-volume"></div>
@@ -55,7 +61,7 @@
     </div>
     <!-- Creates the Start button -->
     <div class="start-button-container" id="start">
-        <button class="start-button" onclick="start_game(30, 3);">Start</button>
+        <button class="start-button" onclick="start_game(30, 3, 2);">Start</button>
     </div>
     <!-- Creates the Waitscreen -->
     <div class="wait-screen"></div>
@@ -79,6 +85,12 @@
     <div class="restart-container">
         <button id="restart" onClick="window.location.reload();">Restart Game</button>
     </div>
+
+    <div id="game-end"> <!-- Need to format this and hide it when game is ongoing -->
+
+    </div>
+
+
     <!-- Initializes Icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

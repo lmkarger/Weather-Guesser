@@ -1,3 +1,4 @@
+//i am the best frontend developer
 var start_button = document.getElementById('start');
 var main_div = document.getElementById('main-game');
 var round = document.getElementById('round');
@@ -10,9 +11,10 @@ var map
 var guess_time
 var marker
 var settings_status = 0
+var endscreen_status = 0
+var round_limit
 
 function toggleSettings(){
-  console.log("Toggled settings")
   const settings = document.getElementById('settings-screen')
   if (settings_status == 0){
     settings.style.display = 'flex'
@@ -23,6 +25,21 @@ function toggleSettings(){
     settings_status = 0
   }
 }
+
+function toggleEndScreen(){
+  console.log("endscreen toggle")
+  const endscreen = document.getElementById('endscreen')
+  if (endscreen_status == 0){
+    console.log("endscreen on")
+    endscreen.style.display = 'flex'
+    endscreen_status = 1
+  }
+  else{
+    endscreen.style.display = 'none'
+    endscreen_status = 0
+  }
+}
+
 
 //settings icon
 const settings_icon = document.querySelector('nav #settings img'); //initializes the settings icon
@@ -80,10 +97,13 @@ function make_map(latitude, longitude){ //instantiates the map, places a marker 
 }
 
 async function change_round(){
+  if ((round_counter >= round_limit) && (endscreen_status == 0)){
+    toggleEndScreen()
+  }
   var city_number = Math.floor(Math.random() * cities.length); //chooses a random number
   var city_name = cities[city_number]["city"]; //sets the city_name to a random city
   city_country = cities[city_number]["country"]; //finds the country correlated the the chosen city
-  [city_latitude, city_longitude, city_temperature] = await get_data(city_name); //gets the weather data for the city
+  [city_latitude, city_longitude, city_temperature, city_name, city_country] = await get_data(city_name); //gets the weather data for the city
   let location = [city_latitude, city_longitude]; //sets location to the location of the city
   map.flyTo(location); //flies to the cities location
   marker.setLatLng(location); //sets a marker at the new location
@@ -705,13 +725,14 @@ async function get_data(city_name) { //gets current weather data from the API
       throw new Error(`Response status: ${response.status}`); //returns error if the API call doesnt work
     }
     const json = await response.json();
-    return [json.location.lat, json.location.lon, json.current.temp_f]; //returns the data we want
+    return [json.location.lat, json.location.lon, json.current.temp_f, json.location.name, json.location.country]; //returns the data we want
   } catch (error) {
     console.error(error.message);
   }
 }
 
-async function start_game(time, thres){ //starts the game
+async function start_game(time, thres, rounds){ //starts the game
+  round_limit = rounds;
   round_counter = 1;
   round.innerHTML = `Round: 1`
   guess_time = time //sets the timer you have to guess to the time chosen in the settings menu

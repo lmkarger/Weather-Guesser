@@ -46,8 +46,9 @@ nav img{
 }
 
 nav #round{
-    position: absolute;
-    left: 46%;
+    position: absolute; /* Position it absolutely to center */
+    left: 50%; /* Move it to the middle of the container */
+    transform: translateX(-50%); /* Offset it by half its own width */
 }
 
 nav #settings{
@@ -197,19 +198,96 @@ nav #settings img.rotate{
     height: 26vw;
     width: 26vw;
     margin: 10px auto;
-    z-index: 1000000;
+    z-index: 10000;
     border: solid;
     border-width: 2px;
     border-color: black;
     border-radius: 15px;
 }
 .restart-container{
-    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50rem;
     justify-content: center;
     text-align: center;
+    margin-bottom: 20;
 }
 #restart{       /*LIAM PLEASE FIX THIS ABOMINATION I DONT KNOW WHAT I WAS DOING PLS FIX */
     width: min(20%, 40vw);
     height: 5vh;
     margin: 2vh auto;
 }
+
+
+.slidecontainer {
+  width: 10%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 10%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #04AA6D; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
+
+#endscreen {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    color: purple;
+    background-color: purple;
+    z-index: 1000000;
+}
+
+
+@media (max-width: 800px) {
+    .gametitle {
+        display: none;
+    }
+    .game-container{
+        width: min(70vw, 100%);
+    }
+    #map {
+        width: 55vw;
+        height: 80vw;
+    }
+    .game-container input{
+        width: 60vw;
+    }
+    .game-container h1{
+        font-size: 16px;
+    }
+    .timer {
+        font-size: 16px;
+    }
+  }
